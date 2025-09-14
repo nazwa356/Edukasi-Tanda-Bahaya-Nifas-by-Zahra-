@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nifas Care - Edukasi Tanda Bahaya Nifas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fce4ec; /* light pink */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f48fb1; /* medium pink */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f06292; /* darker pink */
+        }
+        .active-nav {
+            background-color: #fce4ec;
+            color: #ad1457;
+            font-weight: 600;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#f8bbd0', // Lighter pink
+                        'primary-dark': '#f06292', // Darker pink for accents
+                        'secondary': '#fce4ec', // Very light pink for backgrounds
+                        'accent': '#ec407a', // Accent pink
+                        'text-dark': '#4e4e4e',
+                        'text-light': '#6a6a6a',
+                        'success': '#66bb6a',
+                        'warning': '#ffa726',
+                        'danger': '#ef5350',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-secondary text-text-dark">
+
+    <div id="app-container" class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation for Desktop -->
+        <aside class="hidden md:block w-64 bg-white shadow-lg p-4 flex-shrink-0">
+            <div class="text-center py-4">
+                <h1 class="text-2xl font-bold text-accent">Nifas Care</h1>
+                <p class="text-xs text-text-light">Edukasi Nifas Terpercaya</p>
+            </div>
+            <nav id="desktop-nav" class="mt-8 space-y-2">
+                <a href="#beranda" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200 active-nav" data-target="beranda">
+                    <i data-lucide="home" class="w-5 h-5 mr-3"></i> Beranda
+                </a>
+                <a href="#materi" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="materi">
+                    <i data-lucide="book-open" class="w-5 h-5 mr-3"></i> Materi Edukasi
+                </a>
+                <a href="#deteksi" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="deteksi">
+                    <i data-lucide="shield-check" class="w-5 h-5 mr-3"></i> Deteksi Dini
+                </a>
+                <a href="#kuis" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="kuis">
+                    <i data-lucide="gamepad-2" class="w-5 h-5 mr-3"></i> Kuis Interaktif
+                </a>
+                <a href="#kontak" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="kontak">
+                    <i data-lucide="mail" class="w-5 h-5 mr-3"></i> Kontak & Feedback
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+            <!-- Mobile Header -->
+            <header class="md:hidden flex justify-between items-center mb-6 pb-4 border-b border-primary">
+                <h1 class="text-2xl font-bold text-accent">Nifas Care</h1>
+                <button id="mobile-menu-button">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </header>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-nav" class="hidden md:hidden bg-white rounded-lg shadow-lg p-4 space-y-2 mb-6">
+                 <a href="#beranda" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="beranda">
+                    <i data-lucide="home" class="w-5 h-5 mr-3"></i> Beranda
+                </a>
+                <a href="#materi" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="materi">
+                    <i data-lucide="book-open" class="w-5 h-5 mr-3"></i> Materi Edukasi
+                </a>
+                <a href="#deteksi" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="deteksi">
+                    <i data-lucide="shield-check" class="w-5 h-5 mr-3"></i> Deteksi Dini
+                </a>
+                <a href="#kuis" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="kuis">
+                    <i data-lucide="gamepad-2" class="w-5 h-5 mr-3"></i> Kuis Interaktif
+                </a>
+                <a href="#kontak" class="nav-link flex items-center p-3 rounded-lg hover:bg-secondary transition-colors duration-200" data-target="kontak">
+                    <i data-lucide="mail" class="w-5 h-5 mr-3"></i> Kontak & Feedback
+                </a>
+            </div>
+
+            <!-- Page Sections -->
+            <section id="beranda" class="page">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center flex flex-col items-center">
+                    <img src="https://placehold.co/150x150/f8bbd0/4e4e4e?text=NC" alt="Ilustrasi Nifas Care" class="w-40 h-40 rounded-full object-cover mb-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-accent mb-4">Selamat Datang, Bunda Hebat!</h2>
+                    <p class="text-lg text-text-light max-w-2xl mx-auto mb-8">
+                        "Kenali Tanda Bahaya Nifas, Demi Senyum Ibu Esok Hari"
+                    </p>
+                    <button class="nav-link-cta bg-primary-dark text-white font-bold py-3 px-8 rounded-full hover:bg-accent transition-transform transform hover:scale-105" data-target="materi">
+                        Mulai Pelajari Sekarang
+                    </button>
+                </div>
+            </section>
+
+            <section id="materi" class="page hidden">
+                <h2 class="text-3xl font-bold mb-6">Materi Edukasi</h2>
+                <!-- Apa itu Nifas -->
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <h3 class="text-xl font-bold text-accent mb-2">Apa itu Masa Nifas?</h3>
+                    <p class="text-text-light">Masa nifas (puerperium) adalah periode setelah persalinan yang berlangsung selama 6 minggu atau sekitar 42 hari. Pada masa ini, organ reproduksi ibu akan berangsur-angsur pulih kembali seperti sebelum hamil. Perubahan fisik dan emosional yang signifikan terjadi, sehingga penting bagi ibu dan keluarga untuk memahaminya.</p>
+                </div>
+
+                <!-- Tanda Bahaya Nifas -->
+                <h3 class="text-2xl font-bold mb-4 mt-8">Kenali Tanda Bahaya Utama Nifas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 p-2 rounded-full mr-4"><i data-lucide="droplets" class="text-red-500"></i></div>
+                            <h4 class="font-bold text-lg">Perdarahan Hebat</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Mengganti lebih dari 2 pembalut dalam 30 menit, atau keluar gumpalan darah besar. Ini bisa menandakan rahim tidak berkontraksi (atonia uteri) atau ada sisa plasenta.</p>
+                        <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Segera baringkan ibu, kosongkan kandung kemih, dan susui bayi untuk merangsang kontraksi rahim. Lakukan pijatan lembut pada rahim jika sudah diajarkan.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">SEGERA KE FASILITAS KESEHATAN!</div>
+                    </div>
+                     <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-orange-100 p-2 rounded-full mr-4"><i data-lucide="thermometer" class="text-orange-500"></i></div>
+                            <h4 class="font-bold text-lg">Demam Tinggi</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Suhu tubuh di atas 38°C selama 2 hari atau lebih. Ini bisa menjadi tanda infeksi pada rahim, saluran kemih, atau payudara (mastitis).</p>
+                         <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Pastikan ibu minum cukup cairan dan banyak istirahat. Kompres dengan air hangat. Boleh minum parasetamol jika tidak ada alergi.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">HUBUNGI TENAGA KESEHATAN!</div>
+                    </div>
+                     <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-yellow-100 p-2 rounded-full mr-4"><i data-lucide="wind" class="text-yellow-600"></i></div>
+                            <h4 class="font-bold text-lg">Cairan Vagina Berbau</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Keluarnya cairan (lokia) yang berbau busuk, berwarna kehijauan, atau disertai nyeri perut bawah. Ini tanda infeksi rahim (endometritis).</p>
+                         <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Jaga kebersihan area kewanitaan, sering ganti pembalut, dan hindari penggunaan sabun atau ramuan di area vagina.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">SEGERA KE FASILITAS KESEHATAN!</div>
+                    </div>
+                     <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4"><i data-lucide="activity" class="text-blue-500"></i></div>
+                            <h4 class="font-bold text-lg">Kejang / Sakit Kepala Hebat</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Sakit kepala parah, pandangan kabur, bengkak pada wajah/tangan, hingga kejang. Ini adalah gejala preeklamsia/eklamsia postpartum yang sangat berbahaya.</p>
+                         <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Jika terjadi kejang, miringkan posisi ibu, jauhkan benda berbahaya di sekitar, dan jangan memasukkan apapun ke dalam mulut.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">DARURAT! SEGERA KE RS!</div>
+                    </div>
+                     <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-100 p-2 rounded-full mr-4"><i data-lucide="frown" class="text-purple-500"></i></div>
+                            <h4 class="font-bold text-lg">Baby Blues Berat</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Kesedihan, kecemasan, dan tangisan berlebihan yang berlangsung lebih dari 2 minggu, disertai keinginan menyakiti diri sendiri atau bayi. Ini bisa jadi depresi pasca melahirkan.</p>
+                         <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Berikan dukungan emosional, jangan biarkan ibu sendirian, bantu merawat bayi, dan ajak bicara. Ini bukan kelemahan, ini kondisi medis.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">BUTUH DUKUNGAN PSIKOLOGIS!</div>
+                    </div>
+                     <!-- Card Tanda Bahaya -->
+                    <div class="bg-white rounded-lg shadow-lg p-5 flex flex-col">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-pink-100 p-2 rounded-full mr-4"><i data-lucide="shield-alert" class="text-pink-500"></i></div>
+                            <h4 class="font-bold text-lg">Payudara Bengkak & Nyeri</h4>
+                        </div>
+                        <p class="text-text-light text-sm flex-grow">Payudara bengkak, keras, kemerahan, terasa panas, dan nyeri hebat disertai demam. Ini bisa menjadi tanda mastitis (infeksi payudara).</p>
+                         <details class="mt-4 text-sm">
+                            <summary class="font-semibold cursor-pointer text-accent">Penanganan Awal</summary>
+                            <p class="mt-2 text-text-light">Kompres hangat sebelum menyusui, kompres dingin setelah menyusui. Kosongkan payudara secara teratur dengan menyusui atau memompa.</p>
+                        </details>
+                        <div class="mt-4 p-3 bg-danger text-white text-center rounded-lg font-semibold">KONSULTASI DENGAN NAKES!</div>
+                    </div>
+                </div>
+
+                <!-- Tips LICAKTI -->
+                <div class="bg-gradient-to-r from-primary to-accent text-white p-6 rounded-lg shadow-md mt-8">
+                    <h3 class="text-2xl font-bold mb-2">Ingat Tips "LICAKTI"!</h3>
+                    <p>Sebuah cara mudah untuk waspada terhadap tanda bahaya nifas:</p>
+                    <ul class="list-disc list-inside mt-4 space-y-2">
+                        <li><strong>Lihat:</strong> Amati kondisi fisik dan emosional ibu setiap hari.</li>
+                        <li><strong>Catat:</strong> Tulis keluhan, suhu tubuh, atau jumlah perdarahan jika ada yang tidak biasa.</li>
+                        <li><strong>Konsul:</strong> Jangan ragu bertanya kepada bidan atau dokter.</li>
+                        <li><strong>Tindak:</strong> Segera ambil tindakan jika menemukan tanda bahaya.</li>
+                    </ul>
+                </div>
+
+            </section>
+            
+            <section id="deteksi" class="page hidden">
+                 <h2 class="text-3xl font-bold mb-6">Deteksi Dini Risiko Nifas</h2>
+                 <div class="bg-white p-6 md:p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+                    <p class="text-text-light mb-6">Jawab pertanyaan-pertanyaan berikut sesuai dengan kondisi yang Anda rasakan saat ini untuk mendapatkan penilaian risiko awal. Kejujuran Anda penting untuk hasil yang akurat.</p>
+                    
+                    <form id="detection-form" class="space-y-6">
+                        <!-- Pertanyaan 1 -->
+                        <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="perdarahan hebat">1. Apakah Anda mengalami perdarahan hebat (mengganti lebih dari 2 pembalut dalam 30 menit)?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q1" value="yes" class="mr-1" data-risk="high"> Ya</label>
+                                <label><input type="radio" name="q1" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+                        <!-- Pertanyaan 2 -->
+                         <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="demam tinggi (> 38°C)">2. Apakah Anda mengalami demam (suhu > 38°C) selama 2 hari atau lebih?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q2" value="yes" class="mr-1" data-risk="medium"> Ya</label>
+                                <label><input type="radio" name="q2" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+                        <!-- Pertanyaan 3 -->
+                        <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="keluar cairan berbau busuk dari jalan lahir">3. Apakah keluar cairan berbau busuk dari jalan lahir?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q3" value="yes" class="mr-1" data-risk="medium"> Ya</label>
+                                <label><input type="radio" name="q3" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+                         <!-- Pertanyaan 4 -->
+                        <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="sakit kepala hebat, pandangan kabur, atau bengkak di wajah/tangan">4. Apakah Anda mengalami sakit kepala hebat, pandangan kabur, atau bengkak di wajah/tangan?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q4" value="yes" class="mr-1" data-risk="high"> Ya</label>
+                                <label><input type="radio" name="q4" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+                        <!-- Pertanyaan 5 -->
+                        <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="payudara sangat nyeri, bengkak, kemerahan, dan panas">5. Apakah payudara Anda terasa sangat nyeri, bengkak, kemerahan, dan panas?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q5" value="yes" class="mr-1" data-risk="medium"> Ya</label>
+                                <label><input type="radio" name="q5" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+                         <!-- Pertanyaan 6 -->
+                        <div class="p-4 border rounded-lg">
+                            <p class="font-semibold mb-2" data-symptom="merasa sangat sedih, putus asa, atau memiliki pikiran untuk menyakiti diri sendiri/bayi">6. Apakah Anda merasa sangat sedih, putus asa, atau memiliki pikiran untuk menyakiti diri sendiri/bayi selama lebih dari 2 minggu?</p>
+                            <div class="flex space-x-4">
+                                <label><input type="radio" name="q6" value="yes" class="mr-1" data-risk="high"> Ya</label>
+                                <label><input type="radio" name="q6" value="no" class="mr-1" checked> Tidak</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-accent text-white font-bold py-3 px-6 rounded-full hover:bg-primary-dark transition-colors">Cek Tingkat Risiko</button>
+                    </form>
+
+                    <div id="detection-result" class="mt-6 hidden">
+                        <div id="result-card" class="p-6 rounded-lg text-white">
+                            <h3 id="result-title" class="text-2xl font-bold mb-2"></h3>
+                            <p id="result-description" class="mb-4"></p>
+                            <button id="generate-plan-button" class="bg-white text-accent font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                                ✨ Buat Rencana Pemulihan Pribadi
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="gemini-plan-container" class="mt-6 hidden">
+                         <div id="gemini-plan-loading" class="text-center p-4">
+                            <div class="spinner mx-auto"></div>
+                            <p class="mt-2 text-text-light">Mohon tunggu, Asisten AI sedang menyiapkan rencana pemulihan untuk Anda...</p>
+                        </div>
+                        <div id="gemini-plan-result" class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                             <h3 class="text-xl font-bold text-blue-800 mb-3">Rencana Pemulihan Pribadi dari Asisten AI</h3>
+                             <div id="gemini-plan-content" class="text-text-dark prose max-w-none"></div>
+                             <p class="text-xs text-text-light mt-4 italic"><strong>Penting:</strong> Informasi ini dihasilkan oleh AI dan tidak menggantikan nasihat medis profesional. Selalu konsultasikan dengan dokter atau bidan Anda.</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="kuis" class="page hidden">
+                <h2 class="text-3xl font-bold mb-6">Kuis Interaktif</h2>
+                <div id="quiz-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+                    <div id="question-area">
+                        <p id="question-text" class="text-lg font-semibold mb-4"></p>
+                        <div id="options-container" class="space-y-3"></div>
+                    </div>
+                    <div id="feedback-area" class="mt-4 text-center font-bold"></div>
+                    <div id="result-area" class="hidden text-center">
+                        <h3 class="text-2xl font-bold text-accent">Kuis Selesai!</h3>
+                        <p class="text-lg my-4">Skor Anda:</p>
+                        <p id="score-text" class="text-4xl font-bold mb-6"></p>
+                        <button id="retry-button" class="bg-primary-dark text-white font-bold py-2 px-6 rounded-full hover:bg-accent transition-transform transform hover:scale-105">Coba Lagi</button>
+                    </div>
+                    <button id="next-button" class="hidden mt-6 w-full bg-accent text-white font-bold py-2 px-6 rounded-full hover:bg-primary-dark transition-colors">Lanjut</button>
+                </div>
+            </section>
+
+            <section id="kontak" class="page hidden">
+                <h2 class="text-3xl font-bold mb-6">Kontak & Feedback</h2>
+                <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
+                    <p class="text-text-light mb-6">Punya pertanyaan, kritik, atau saran? Kami senang mendengarnya! Silakan isi form di bawah ini.</p>
+                    <form id="feedback-form">
+                        <div class="mb-4">
+                            <label for="name" class="block font-semibold mb-1">Nama Anda</label>
+                            <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block font-semibold mb-1">Email Anda</label>
+                            <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block font-semibold mb-1">Pesan</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary-dark text-white font-bold py-3 px-6 rounded-full hover:bg-accent transition-colors">Kirim Pesan</button>
+                    </form>
+                    <div id="form-success-message" class="hidden mt-4 p-4 bg-success text-white text-center rounded-lg">
+                        Terima kasih! Pesan Anda telah kami terima.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Icon initialization ---
+            lucide.createIcons();
+
+            // --- Navigation Logic ---
+            const navLinks = document.querySelectorAll('.nav-link, .nav-link-cta');
+            const pages = document.querySelectorAll('.page');
+            
+            function showPage(targetId) {
+                pages.forEach(page => {
+                    if (page.id === targetId) {
+                        page.classList.remove('hidden');
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                });
+
+                // Update active link style
+                document.querySelectorAll('.nav-link, .nav-link-cta').forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active-nav');
+                    }
+                });
+                
+                // Close mobile menu after navigation
+                const mobileNav = document.getElementById('mobile-nav');
+                if(!mobileNav.classList.contains('hidden')){
+                    mobileNav.classList.add('hidden');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.dataset.target;
+                    showPage(targetId);
+                    window.location.hash = targetId;
+                });
+            });
+
+            // Handle initial page load based on hash
+            const initialTarget = window.location.hash.substring(1) || 'beranda';
+            showPage(initialTarget);
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+
+            // --- Early Detection & Gemini API Logic ---
+            const detectionForm = document.getElementById('detection-form');
+            const detectionResult = document.getElementById('detection-result');
+            const resultCard = document.getElementById('result-card');
+            const resultTitle = document.getElementById('result-title');
+            const resultDescription = document.getElementById('result-description');
+            const generatePlanButton = document.getElementById('generate-plan-button');
+            const geminiPlanContainer = document.getElementById('gemini-plan-container');
+            const geminiPlanLoading = document.getElementById('gemini-plan-loading');
+            const geminiPlanResult = document.getElementById('gemini-plan-result');
+            const geminiPlanContent = document.getElementById('gemini-plan-content');
+            let userSymptoms = [];
+
+            detectionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let highRiskCount = 0;
+                let mediumRiskCount = 0;
+                userSymptoms = []; // Reset symptoms on new submission
+                geminiPlanContainer.classList.add('hidden'); // Hide previous plan
+
+                const formData = new FormData(detectionForm);
+                for (let i = 1; i <= 6; i++) {
+                    const radioValue = formData.get(`q${i}`);
+                    const questionElement = detectionForm.querySelector(`p[data-symptom]`);
+
+                    if (radioValue === 'yes') {
+                        const riskLevel = detectionForm.querySelector(`input[name="q${i}"][value="yes"]`).dataset.risk;
+                        const symptomText = detectionForm.querySelector(`p[data-symptom]`).dataset.symptom;
+                        
+                        userSymptoms.push(symptomText);
+
+                        if (riskLevel === 'high') {
+                            highRiskCount++;
+                        } else if (riskLevel === 'medium') {
+                            mediumRiskCount++;
+                        }
+                    }
+                }
+
+                detectionResult.classList.remove('hidden');
+
+                if (highRiskCount > 0) {
+                    resultCard.className = 'p-6 rounded-lg text-white bg-danger';
+                    resultTitle.innerText = 'Risiko Tinggi / Bahaya';
+                    resultDescription.innerHTML = 'Anda memiliki setidaknya satu gejala berisiko tinggi. <strong>Ini adalah kondisi darurat.</strong> Mohon segera kunjungi fasilitas kesehatan terdekat (IGD Rumah Sakit atau Puskemas) untuk mendapatkan penanganan secepatnya.';
+                } else if (mediumRiskCount > 0) {
+                    resultCard.className = 'p-6 rounded-lg text-white bg-warning';
+                    resultTitle.innerText = 'Risiko Waspada';
+                    resultDescription.innerHTML = 'Anda memiliki gejala yang perlu diwaspadai. Jangan tunda, segera konsultasikan kondisi Anda dengan bidan atau dokter untuk pemeriksaan lebih lanjut. Pantau terus kondisi Anda.';
+                } else {
+                    resultCard.className = 'p-6 rounded-lg text-white bg-success';
+                    resultTitle.innerText = 'Risiko Rendah';
+                    resultDescription.innerHTML = 'Saat ini, tidak ada tanda bahaya yang terdeteksi dari jawaban Anda. Tetap jaga kesehatan, istirahat yang cukup, dan terus pantau kondisi Anda sesuai anjuran pada halaman Materi Edukasi.';
+                }
+            });
+            
+            generatePlanButton.addEventListener('click', async () => {
+                if(userSymptoms.length === 0) {
+                    geminiPlanContainer.classList.remove('hidden');
+                    geminiPlanLoading.classList.add('hidden');
+                    geminiPlanResult.classList.remove('hidden');
+                    geminiPlanContent.innerHTML = "<p>Tidak ada gejala yang dipilih untuk dibuatkan rencana. Silakan pilih 'Ya' pada salah satu gejala jika Anda merasakannya.</p>";
+                    return;
+                }
+
+                geminiPlanContainer.classList.remove('hidden');
+                geminiPlanLoading.classList.remove('hidden');
+                geminiPlanResult.classList.add('hidden');
+                generatePlanButton.disabled = true;
+                generatePlanButton.innerHTML = `<div class="spinner"></div><span class="ml-2">Membuat...</span>`;
+
+                const apiKey = ""; // API key will be injected by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const systemPrompt = "Anda adalah asisten bidan virtual yang ramah, empatik, dan suportif bernama 'Nifa'. Tugas Anda adalah memberikan saran dan rencana tindakan awal yang aman dan menenangkan bagi ibu pasca-melahirkan berdasarkan gejala yang mereka alami. Selalu tekankan bahwa saran Anda BUKAN pengganti nasihat medis profesional dan selalu anjurkan pengguna untuk SEGERA berkonsultasi dengan dokter atau bidan. Gunakan bahasa Indonesia yang mudah dipahami, lembut, dan positif. Berikan jawaban dalam format poin-poin (bullet points) atau daftar bernomor untuk memudahkan pembacaan.";
+                const userQuery = `Halo Nifa, saya seorang ibu baru. Berdasarkan pemeriksaan, saya mengalami gejala berikut: ${userSymptoms.join(', ')}. Tolong buatkan rencana tindakan pribadi yang harus saya lakukan.`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    let generatedText = "Maaf, terjadi kesalahan saat mencoba membuat rencana. Silakan coba lagi nanti.";
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                       generatedText = candidate.content.parts[0].text;
+                    }
+                    
+                    // Simple Markdown to HTML conversion
+                    generatedText = generatedText
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                        .replace(/\* (.*?)(?=\n\* |\n\n|$)/g, '<li>$1</li>') // List items
+                        .replace(/(\n<li>.*<\/li>)/g, '<ul>$1</ul>'); // Wrap in ul
+
+                    geminiPlanContent.innerHTML = generatedText;
+
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    geminiPlanContent.innerHTML = "<p class='text-danger'>Gagal memuat rencana pemulihan. Periksa koneksi internet Anda dan coba lagi.</p>";
+                } finally {
+                    geminiPlanLoading.classList.add('hidden');
+                    geminiPlanResult.classList.remove('hidden');
+                    generatePlanButton.disabled = false;
+                    generatePlanButton.innerHTML = '✨ Buat Ulang Rencana Pemulihan';
+                }
+            });
+
+            // --- Quiz Logic ---
+            const quizData = [
+                { question: "Apa yang harus segera dilakukan jika ibu nifas mengganti lebih dari 2 pembalut dalam 30 menit?", options: ["Minum jamu", "Segera ke fasilitas kesehatan", "Banyak beraktivitas", "Tidur saja"], answer: "Segera ke fasilitas kesehatan" },
+                { question: "Suhu tubuh berapa yang dianggap sebagai demam dan tanda bahaya jika berlangsung lebih dari 2 hari?", options: ["37°C", "37.5°C", "Di atas 38°C", "Di bawah 36°C"], answer: "Di atas 38°C" },
+                { question: "Sakit kepala hebat disertai pandangan kabur pada masa nifas adalah gejala dari...", options: ["Kelelahan biasa", "Kurang tidur", "Preeklamsia / Eklamsia", "Masuk angin"], answer: "Preeklamsia / Eklamsia" },
+                { question: "Keluarnya cairan vagina yang berbau busuk merupakan tanda dari...", options: ["Proses pemulihan normal", "Infeksi pada rahim", "Kelebihan cairan", "Alergi pembalut"], answer: "Infeksi pada rahim" },
+                { question: "Perasaan sedih yang berlangsung lebih dari 2 minggu dan disertai keinginan menyakiti diri sendiri disebut...", options: ["Baby Blues", "Kangen suami", "Depresi pasca melahirkan", "Stres biasa"], answer: "Depresi pasca melahirkan" }
+            ];
+
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const feedbackArea = document.getElementById('feedback-area');
+            const resultArea = document.getElementById('result-area');
+            const scoreText = document.getElementById('score-text');
+            const retryButton = document.getElementById('retry-button');
+            const nextButton = document.getElementById('next-button');
+            const questionArea = document.getElementById('question-area');
+
+            let currentQuestionIndex = 0;
+            let score = 0;
+
+            function startQuiz() {
+                currentQuestionIndex = 0; score = 0;
+                resultArea.classList.add('hidden');
+                questionArea.classList.remove('hidden');
+                feedbackArea.innerHTML = '';
+                nextButton.classList.add('hidden');
+                loadQuestion();
+            }
+
+            function loadQuestion() {
+                feedbackArea.innerHTML = '';
+                nextButton.classList.add('hidden');
+                const currentQuestion = quizData[currentQuestionIndex];
+                questionText.innerText = currentQuestion.question;
+                optionsContainer.innerHTML = '';
+                currentQuestion.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.innerText = option;
+                    button.classList.add('w-full', 'text-left', 'p-3', 'border', 'rounded-lg', 'hover:bg-secondary', 'transition-colors');
+                    button.addEventListener('click', () => selectAnswer(option, button));
+                    optionsContainer.appendChild(button);
+                });
+            }
+            function selectAnswer(selectedOption, button) {
+                const isCorrect = selectedOption === quizData[currentQuestionIndex].answer;
+                optionsContainer.querySelectorAll('button').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.innerText === quizData[currentQuestionIndex].answer) btn.classList.add('bg-success', 'text-white', 'border-success');
+                });
+                if (isCorrect) {
+                    score++;
+                    feedbackArea.innerHTML = '<p class="text-success">Bagus, Anda benar!</p>';
+                    button.classList.add('bg-success', 'text-white', 'border-success');
+                } else {
+                    feedbackArea.innerHTML = '<p class="text-danger">Coba lagi, mari pelajari kembali di bagian materi.</p>';
+                    button.classList.add('bg-danger', 'text-white', 'border-danger');
+                }
+                nextButton.classList.remove('hidden');
+            }
+            nextButton.addEventListener('click', () => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) loadQuestion();
+                else showResults();
+            });
+            function showResults() {
+                questionArea.classList.add('hidden');
+                nextButton.classList.add('hidden');
+                feedbackArea.innerHTML = '';
+                resultArea.classList.remove('hidden');
+                scoreText.innerText = `${(score / quizData.length) * 100}`;
+            }
+            retryButton.addEventListener('click', startQuiz);
+            if (questionText) startQuiz();
+
+            // --- Contact Form Logic ---
+            const feedbackForm = document.getElementById('feedback-form');
+            const formSuccessMessage = document.getElementById('form-success-message');
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                formSuccessMessage.classList.remove('hidden');
+                feedbackForm.reset();
+                setTimeout(() => formSuccessMessage.classList.add('hidden'), 4000);
+            });
+        });
+    </script>
+</body>
+</html>
+
